@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="background-color:rgba(14, 134, 240, 0.4);font-size:300%;padding-left:5%;color:rgb(7, 7, 250);">
+    <img src="{% static 'train.png' %}" class="icon">
+    PRE-REQUISITES
+</div>
+{% if back%}
+<center><a href="login"><div class="sub">BACK TO LOGIN</div></a></center>
+{% endif %}
+<div class="regis">
+    <h2 style="background-color:rgba(0, 0, 0, 0.692);color:rgb(255, 255, 255);text-align:center;">REGISTER A USER</h2>
+    <p style="text-align: center;"><strong>Duplicate entries will not be registered</strong></p>
+    <div style="text-align:center;">
+        <form action="dash" method="POST">
+            {% csrf_token %}
+            <p><label for="user">USERNAME: <input class="inp" type="text" name="user" required></label></p>
+            <p><label for="passwd">PASSWORD: <input class="inp" type="password" name="passwd" required></label></p>
+            <p><label for="fname">FIRST NAME: <input class="inp" type="text" name="fname" required></label></p>
+            <p><label for="lname">LAST NAME: <input class="inp" type="text" name="lname"></label></p>
+            <p><label for="dob">DATE OF BIRTH: <input class="inp" type="date" name="dob"></label></p>
+            <p><label for="gender">GENDER: 
+                <select class="inp" name="gender">
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Others</option>
+                </select>
+            </label></p>
+            <p><label for="phn">PHONE: <input class="inp" type="number" name="phn"></label></p>
+            <p><label>
+                <input type="submit" value="Submit" style="width:150px;font-size:110%;color:#fff;background-color:rgba(0, 0, 0, 0.699);
+                border:1px solid #000;">
+            </label></p>
+        </form>
+    </div>
+</div>
+{% endblock %}

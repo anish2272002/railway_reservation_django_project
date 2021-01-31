@@ -1,0 +1,101 @@
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="create_heading">
+    TICKET CONFIRMATION
+</h1>
+<div class="confirm_tab">
+    <div style="position: absolute;left:5%;top:auto;border-right:1px solid black;width:45%;height:100%;">
+        <p>FROM : {{train.tstart}}</p>
+        <p>TO : {{train.tend}}</p>
+        <p>DEPARTURE: {{date}}</p>
+        <p>TRAIN : {{train.tname}}</p>
+    </div>
+    {% if user %}
+    <div style="position: absolute;right:20%;top:auto;">
+        <p>FIRST NAME : {{userinfo.fname}}</p>
+        <p>LAST NAME : {{userinfo.lname}}</p>
+        <p>DOB : {{userinfo.dob}}</p>
+        <p>GENDER : {{userinfo.gender}}</p>
+        <p>MOBILE : {{userinfo.phn}}</p>
+
+        <form action='ticket' method="POST">
+            {% csrf_token %}
+            <p><label for="from"><select name="from" style="display:none;">
+                    <option>{{train.tstart}}</option>
+                </select></label></p>
+            <p><label for="to"><select name="to" style="display:none;">
+                    <option>{{train.tend}}</option>
+                </select></label></p>
+            <p><label for="departure"><select name="departure" style="display:none;">
+                    <option>{{date}}</option>
+                </select></label></p>
+            <p><label for="tname"><select name="tname" style="display:none;">
+                    <option>{{train.tname}}</option>
+            </select></label></p>
+            <p><label for="fname"><select name="fname" style="display:none;">
+                    <option>{{userinfo.fname}}</option>
+            </select></label></p>
+            <p><label for="lname"><select name="lname" style="display:none;">
+                    <option>{{userinfo.lname}}</option>
+            </select></label></p>
+            <p><label for="dob"><select name="dob" style="display:none;">
+                    <option>{{userinfo.dob}}</option>
+            </select></label></p>
+            <p><label for="gender"><select name="gender" style="display:none;">
+                    <option>{{userinfo.gender}}</option>
+            </select></label></p>
+            <p><label for="mobile"><select name="mobile" style="display:none;">
+                    <option>{{userinfo.phn}}</option>
+            </select></label></p>
+            <!-- ----+----- -->
+            <p><label for="classtype">CLASS&nbsp;<select class="inp" style="width:max-content;" name="classtype">
+                    <option>1AC</option>
+                    <option>2AC</option>
+                    <option>3AC</option>
+                    <option>SLEEPER</option>
+                </select></label></p>
+            <p><label for="sub"><input class="sub" type="submit" style="height:auto;width:max-content;" name="sub" value="CONFIRM"></label></p>
+        </form>
+    </div>
+    {% else %}
+    <div style="position: absolute;right:10%;top:auto;">
+        <form action='ticket' method="POST">
+            {% csrf_token %}
+            <p><label for="from"><select name="from" style="display:none;">
+                    <option>{{train.tstart}}</option>
+                </select></label></p>
+            <p><label for="to"><select name="to" style="display:none;">
+                    <option>{{train.tend}}</option>
+                </select></label></p>
+            <p><label for="departure"><select name="departure" style="display:none;">
+                    <option>{{date}}</option>
+                </select></label></p>
+            <p><label for="tname"><select name="tname" style="display:none;">
+                    <option>{{train.tname}}</option>
+            </select></label></p>
+            <p><label for="fname">FIRSTNAME:&nbsp;<input name="fname" type="text">
+            </label></p>
+            <p><label for="lname">LASTNAME:&nbsp;<input name="lname" type="text">
+            </label></p>
+            <p><label for="dob">DOB:&nbsp;<input name="dob" type="date">
+            </label></p>
+            <p><label for="gender">GENDER:<select class="inp" style="width:max-content;" name="gender">
+                <option>Male</option>
+                <option>Female</option>
+            </select></label></p>
+            <p><label for="mobile">MOBILE:<input name="mobile" type="number">
+            </label></p>
+            <p><label for="classtype">CLASS&nbsp;<select class="inp" style="width:max-content;" name="classtype">
+                    <option>1AC</option>
+                    <option>2AC</option>
+                    <option>3AC</option>
+                    <option>SLEEPER</option>
+                </select></label></p>
+            <p><label for="sub"><input class="sub" type="submit" style="height:auto;width:max-content;" name="sub" value="CONFIRM"></label></p>
+        </form>
+    </div>
+        {% endif %}
+</div>
+<span><a href="dash"><button class="sub" style="height:auto;width:max-content;">BACK</button></a></span>
+
+{% endblock %}

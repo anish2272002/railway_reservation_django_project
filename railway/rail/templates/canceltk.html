@@ -1,0 +1,116 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="background-color:rgba(14, 134, 240, 0.4);font-size:300%;padding-left:5%;color:rgb(7, 7, 250);">
+<img src="{% static 'train.png' %}" class="icon">
+DASHBOARD
+<a href="login">
+        <div class='login'>
+                <img class="login_img" src="{% static 'img6Q.png' %}">
+                {{fname}}<br>
+                {{lname}}
+        </div>
+</a>
+</div>
+<div class="dash">
+        <a href="dash"><div class="dash_option">
+                SEARCH TRAIN
+        </div></a>
+        <a href="ticket"><div class="dash_option">
+                TICKET STATUS
+        </div></a>
+        <a href="cancel"><div class="dash_option">
+                CANCEL TICKET
+        </div></a>
+        <a href="reset"><div class="dash_option">
+                RESET
+        </div></a>
+        <div style="height:2.4em;width:100%;padding-top:2%;border-top:1.5px solid white;text-align:center;">
+        </div>
+</div>
+<div class="dash_view">
+        <div style="font-family:sans-serif;font-size:1.8em;text-align:center;">CANCEL TICKET</div>
+        <div style="border-bottom:2px solid black;width:98%;padding-bottom:1%;padding-left:2%;" >
+            <form action="cancel" method="POST">
+                {% csrf_token %}
+                <p><label for="usr">USERNAME&nbsp;<input class="inp" name="usr" type="text" required></label></p>
+                <p><label for="passwd">PASSWORD&nbsp;<input class="inp" name="passwd" type="password"></label></p>
+                <p><label for="pnr">PNR&nbsp;<input class="inp" name="pnr" type="number" required></label></p>
+                <p><label for="sub"><input class="sub" name="sub" type="submit" value="CANCEL"></label></p>
+            </form>
+            {% if cancel %}
+            <span style="background-color: #fff;padding:0.5%;display:block;font-size:0.7em;">The Ticket of {{cancel_tk.fname}} {{cancel_tk.lname}} is canceled with PNR no. {{cancel_tk.pnr}} and TID {{cancel_tk.tid}}</span>
+            {% elif cancel is False %}
+            <span style="color:red;">Invalid Input</span>
+            {% endif %}
+        </div>
+        <div style="font-family:monospace;font-size:1em;text-align:center;">CANCELED TICKETS</div>
+        {% for tk in ticket %}
+        <div class="train_search_card" style="width:45%;display:inline-block;font-size:0.6em;">
+        <table>
+                <tr>
+                        <td class="mytd"><span style="color:blue;">TID</span></td>
+                        <td class="mytd"><span style="color:blue;">{{tk.tid}}</span></td>
+                </tr>
+                <tr>
+                        <td class="mytd">FROM</td>
+                        <td class="mytd">{{tk.start}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">TO</td>
+                        <td class="mytd">{{tk.end}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">DEPARTURE</td>
+                        <td class="mytd">{{tk.departure}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">TRAIN</td>
+                        <td class="mytd">{{tk.tname}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd"><span style="color:red;">PNR</span></td>
+                        <td class="mytd"><span style="color:red;">{{tk.pnr}}</span></td>
+                </tr>
+                <tr>
+                        <td class="mytd">FIRSTNAME</td>
+                        <td class="mytd">{{tk.fname}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">LASTNAME</td>
+                        <td class="mytd">{{tk.lname}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">DOB</td>
+                        <td class="mytd">{{tk.dob}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">GENDER</td>
+                        <td class="mytd">{{tk.gender}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd">MOBILE</td>
+                        <td class="mytd">{{tk.phn}}</td>
+                </tr>
+                <tr>
+                        <td class="mytd"><b>PRICE</b></td>
+                        <td class="mytd"><b>Rs. {{tk.price}}</b></td>
+                </tr>
+                <tr>
+                        <td class="mytd">CLASS</td>
+                        <td class="mytd">{{tk.classtype}}</td>
+                </tr>
+                <tr>
+                        {% if tk.status%}
+                        <td class="mytd"><span style="color:rgb(5, 207, 5);">STATUS</span></td>
+                        <td class="mytd"><span style="color:rgb(4, 192, 4);">RESERVED</span></td>
+                        {% else %}
+                        <td class="mytd"><span style="color:rgb(230, 3, 15);">STATUS</span></td>
+                        <td class="mytd"><span style="color:rgb(230, 3, 15);">CANCELED</span></td>
+                        {% endif %}
+                </tr>
+        </table>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}

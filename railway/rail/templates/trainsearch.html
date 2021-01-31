@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="background-color:rgba(14, 134, 240, 0.4);font-size:300%;padding-left:5%;color:rgb(7, 7, 250);">
+<img src="{% static 'train.png' %}" class="icon">
+DASHBOARD
+<a href="login">
+        <div class='login'>
+                <img class="login_img" src="{% static 'img6Q.png' %}">
+                {{fname}}<br>
+                {{lname}}
+        </div>
+</a>
+</div>
+<div class="dash">
+        <a href="dash"><div class="dash_option">
+                SEARCH TRAIN
+        </div></a>
+        <a href="ticket"><div class="dash_option">
+                TICKET STATUS
+        </div></a>
+        <a href="cancel"><div class="dash_option">
+                CANCEL TICKET
+        </div></a>
+        <a href="reset"><div class="dash_option">
+                RESET
+        </div></a>
+        <div style="height:2.4em;width:100%;padding-top:2%;border-top:1.5px solid white;text-align:center;">
+        </div>
+</div>
+<div class="dash_view">
+        <div style="font-family:sans-serif;font-size:1.8em;text-align:center;">SEARCH RESULTS</div>
+        <span class="sub">{{date}}</span>
+        {% for tr in train %}
+        <div class="train_search_card">
+                TRAIN NO : {{tr.tno}}<br>
+                TRAIN NAME : {{tr.tname}}<br>
+                FROM : {{tr.tstart}}<br>
+                TO  : {{tr.tend}}<br>
+                <div style="border:1.5px solid rgb(0, 255, 76);">
+                1AC : {{tr.t1AC}}&nbsp;&nbsp;
+                2AC : {{tr.t2AC}}&nbsp;&nbsp;
+                3AC : {{tr.t3AC}}&nbsp;&nbsp;
+                SLEEPER : {{tr.tsleep}}<br>
+                </div>
+                <form action="book" method="POST">
+                {% csrf_token %}
+                <label for='stno'><select name='stno' style="display:none;">
+                        <option>{{tr.tno}}</option>
+                </select></label>
+                <label for='sdate'><select name='sdate' style="display:none;">
+                        <option>{{date}}</option>
+                </select></label>
+                <label><input type="submit" class='book' name="book" value='BOOK'></label>
+                </form>
+        </div>
+        {% endfor %}
+</div>
+{% endblock %}

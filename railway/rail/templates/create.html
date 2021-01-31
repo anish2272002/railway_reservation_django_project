@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<h1 class="create_heading">CREATORS</h1>
+<div class="create_card"  style="left:8%;">
+    <p><img class="create_card_img" src="{% static '12.jpg' %}"></p>
+    <p>Anish Kumar</p>
+    <p>---</p>
+</div>
+<div class="create_card"  style="left:38%;">
+        <p><img class="create_card_img" src="{% static 'gaurav.jpg' %}"></p>
+        <p>Gaurav Raj</p>
+        <p>---</p>
+</div>
+<div class="create_card"  style="left:68%;">
+        <p><img class="create_card_img" src="{% static 'ashwani.jpg' %}"></p>
+        <p>Ashwani Kumar</p>
+        <p>---</p>
+</div>
+<a href="{{status}}"><button class="sub" style="width:10em;height:2em;position:absolute;bottom:2.6em;">BACK</button></a>
+{% endblock %}

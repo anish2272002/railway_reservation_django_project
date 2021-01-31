@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>MYPAGE</title>
+	<style>
+	body{
+        background-color:rgba(220, 20, 60, 0.699);
+        font-size:3vmin;
+	}
+    .login_card{
+        width:30%;
+        height:54%;
+        text-align:center;
+        background-color: #fff;
+        padding:0.5%;
+        position:absolute;
+        left:34%;
+        top:23%;
+        overflow:auto;
+        font-size:1em;
+}
+    .login_card_title{
+        background-color: rgba(0, 0, 0, 0.815);
+        color:#fff;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font-size:1.7em;
+    }
+    .sub{
+        height:15%;
+        width:40%;
+        font-size:1em;
+        color:white;
+        background-color: rgba(0, 0, 0, 0.815);
+        border:none;
+    }
+	</style>
+</head>
+<body>
+    <div class='login_card'>
+        <h1 class='login_card_title'>LOGIN</h1>
+        <form action="login" method="POST">
+            {% csrf_token %}
+            <p><label for='username'>USERNAME &nbsp;<input name='username' type='text'></label></p>
+            <p><label for='password'>PASSWORD &nbsp;<input name='password' type='password'></label></p>
+            <p><input type="submit" class="sub"></p>
+        </form>
+        {% if status is True %}
+        <div style="background-color:#dedede;padding:0.2%;color:blue;font-family:Arial;">
+            Logged In
+        </div>
+        {% elif status is False %}
+        <div style="background-color:#dedede;padding:0.2%;color:red;font-family:Arial;">
+            There is no such user
+        </div>
+        {% else %}
+        <div style="background-color:#dedede;padding:0.2%;">
+            &nbsp;
+        </div>
+        {% endif %}
+        <a href='dash'>
+        <p><button class="sub">DASHBOARD</button></p></a>
+        <form action="prereq" method="POST">
+            {% csrf_token %}
+            <p><input type="submit" class="sub" value="REGISTER"></p></a>
+        </form>
+    </div>
+</body>
+</html>

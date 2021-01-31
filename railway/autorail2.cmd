@@ -1,0 +1,1 @@
+Scripts\activate & cd rail & python manage.py runserver & exit

@@ -1,0 +1,73 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<div style="background-color:rgba(14, 134, 240, 0.4);font-size:300%;padding-left:5%;color:rgb(7, 7, 250);">
+<img src="{% static 'train.png' %}" class="icon">
+DASHBOARD
+<a href="login">
+        <div class='login'>
+                <img class="login_img" src="{% static 'img6Q.png' %}">
+                {{fname}}<br>
+                {{lname}}
+        </div>
+</a>
+</div>
+<div class="dash">
+        <a href="dash"><div class="dash_option">
+                SEARCH TRAIN
+        </div></a>
+        <a href="ticket"><div class="dash_option">
+                TICKET STATUS
+        </div></a>
+        <a href="cancel"><div class="dash_option">
+                CANCEL TICKET
+        </div></a>
+        <a href="reset"><div class="dash_option">
+                RESET
+        </div></a>
+        <div style="height:2.4em;width:100%;padding-top:2%;border-top:1.5px solid white;text-align:center;">
+        </div>
+</div>
+<div class="dash_view">
+    <div style="font-family:sans-serif;font-size:1.8em;text-align:center;">BOOK TICKET</div>
+    <span class="sub">{{date}}</span>
+    <div class="train_search_card">
+        TRAIN NO : {{train.tno}}<br>
+        TRAIN NAME : {{train.tname}}<br>
+        FROM : {{train.tstart}}<br>
+        TO  : {{train.tend}}<br>
+        <div style="border:1.5px solid rgb(0, 255, 76);">
+        1AC : {{train.t1AC}}&nbsp;&nbsp;
+        2AC : {{train.t2AC}}&nbsp;&nbsp;
+        3AC : {{train.t3AC}}&nbsp;&nbsp;
+        SLEEPER : {{train.tsleep}}<br>
+        </div>
+    </div>
+    <form action="ticketconfirm" method="POST">
+            {% csrf_token %}
+            <label for='stno'><select name='stno' style="display:none;">
+                <option>{{train.tno}}</option>
+            </select></label>
+            <label for='user'><select name='user' style="display:none;">
+                <option>user</option>
+            </select></label>
+            <label for='date'><select name='date' style="display:none;">
+                <option>{{date}}</option>
+            </select></label>
+            <label for='sub'><input type="submit" class='card1' name="sub" value='CONTINUE AS {{fname}}'></label>
+    </form>
+    <form action="ticketconfirm" method="POST">
+            {% csrf_token %}
+            <label for='stno'><select name='stno' style="display:none;">
+                <option>{{train.tno}}</option>
+            </select></label>
+            <label for='user'><select name='user' style="display:none;">
+                <option>other</option>
+            </select></label>
+            <label for='date'><select name='date' style="display:none;">
+                <option>{{date}}</option>
+            </select></label>
+            <label for='sub'><input type="submit" class='card2' name="sub" value='OTHER PASSANGERS'></label>
+    </form>
+</div>
+{% endblock %}

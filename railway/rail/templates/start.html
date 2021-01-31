@@ -1,0 +1,194 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RAILWAY</title>
+    <style>
+        @keyframes spin {
+            0%{ transform:rotate(0deg) }
+            100%{ transform:rotate(360deg) }
+        }
+        @keyframes content {
+            0%{ opacity:0; }
+            100%{ opacity:1; }
+        }
+        #loader{
+            display:none;
+            border:10px solid rgb(226, 226, 226);
+            border-top:11px solid rgb(70, 112, 252);
+            border-radius:50%;
+            height:110px;
+            width:110px;
+            left:45.5%;
+            top:40%;
+            position:absolute;
+            animation-name:spin;
+            animation-duration:0.8s;
+            animation-iteration-count:infinite;
+        }
+        #content {
+            display:none;
+            text-align:center;
+            animation-name:content;
+            animation-duration:3.5s;
+            animation-iteration-count:1;
+        }
+        body {
+            font-size:3vmin;
+        }
+        .header{
+            position:fixed;
+            top:0%;
+            left:0%;
+            width:100%;
+            color:white;
+            font-size:3em;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+            background-color:rgba(0, 0, 0, 0.9);
+        }
+        .tab1{
+            position:fixed;
+            top:10%;
+            left:0%;
+            background-color: rgb(241, 240, 240);
+            height:88%;
+            width:20%;
+            z-index:-1;
+            border-right:3px solid black;
+        }
+        .tab2{
+            position:fixed;
+            top:10%;
+            right:0%;
+            background-color: rgb(241, 240, 240);
+            height:88%;
+            width:20%;
+            z-index:-1;
+            border-left:3px solid black;
+        }
+        .tab1 td,.tab2 td{
+            border-bottom: 1px solid black;
+        }
+        .tab1 td img{
+            height:40%;
+            width:80%;
+        }
+        .tab2 td img{
+            height:7em;
+            width:6em;
+        }
+        .but{
+            border:2.5px solid #000;
+            color:#000;
+            background-color: rgba(255, 255, 255, 0.8);
+            height:13%;
+            width:30%;
+            font-size:1.4em;
+            margin-top:4%;
+            font-family:sans-serif;
+        }
+        .but:hover{
+            background-color:rgba(0, 0, 0, 0.8);
+            color:#fff;
+        }
+        .creators{
+            background-color:rgba(0, 0, 0, 0.9);
+            display:block;
+            height:5%;
+            width:100%;
+            position:fixed;
+            left:0%;
+            bottom:0%;
+            font-size:130%;
+            padding-top:0.4%;
+            text-align:center;
+        }
+        @keyframes show{
+            0%{opacity:0;}
+            50%{opacity:1;}
+            100%{opacity:0;}
+        }
+        #showtime{
+            position:absolute;
+            top:40%;
+            width:100%;
+            font-size:3em;
+            text-align:center;
+            font-family: sans-serif;
+            animation:show;
+            animation-duration:5s;
+            animation-iteration-count:3;
+        }
+    </style>
+</head>
+<body onload='mytime()'>
+    <div>
+        <audio autoplay>
+            <source src="{% static 'myaudio.mp3' %}" type="audio/mp3">
+        </audio>
+    </div>
+    <div id='showtime'>
+        Hi There!
+    </div>
+    <div id="loader"></div>
+    <div id="content">
+        <div class="header">
+            RAILWAY RESERVATION SYSTEM
+        </div>
+        <table class="tab1">
+            <tr>
+                <td><img src="{% static 'dj.png' %}"></td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'py.png' %}"></td>
+            </tr>
+            <tr>
+                <td><img style="height:25%;" src="{% static 'sqlite.jpg' %}"></td>
+            </tr>
+        </table>
+        <table class="tab2">
+            <tr>
+                <td><img src="{% static 'ht.png' %}"></td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'cs2.jpg' %}"></td>
+            </tr>
+            <tr>
+                <td><img src="{% static 'jv.png' %}"></td>
+            </tr>
+        </table>
+        <img src="{% static 'train.png' %}" style="width:30%;height:40%;margin-top:8%;"><br>
+        <a href="prereq"><button class="but">GET STARTED</button></a>
+    <div class="creators">
+    <a style="text-decoration:none;color:#fff;" href="#">
+    CREATED BY &nbsp; ANISH KUMAR &nbsp;&nbsp; GAURAV RAJ &nbsp;&nbsp; ASHWANI KUMAR</a>
+    </div>
+    </div>
+    <script>
+        var myvar;
+        function mytime(){
+            myvar=setTimeout(myshow,4800);
+        }
+        function myshow(){
+            document.getElementById('showtime').innerHTML='We are getting things ready';
+            myvar=setTimeout(myshow2,4800);
+        }
+        function myshow2(){
+            document.getElementById('showtime').innerHTML='Almost done';
+            myvar=setTimeout(myfun,4800);
+        }
+        function myfun(){
+            document.getElementById('showtime').style.display='none';
+            document.getElementById("loader").style.display="block";
+            myvar=setTimeout(myload,3600);
+        }
+        function myload(){
+            document.getElementById("loader").style.display="none";
+            document.getElementById("content").style.display="block";
+        }
+    </script>
+</body>
+</html>
