@@ -1,4 +1,4 @@
-ANISH KUMAR | GAURAV RAJ | ASHWANI KUMAR
+ANISH KUMAR
 
 The adjacent autorail.cmd is a windows command script file.
 Please open the autorail.cmd file to initialise the project.
