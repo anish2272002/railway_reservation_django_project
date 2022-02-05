@@ -1,6 +1,5 @@
 ANISH KUMAR
 
-The adjacent autorail.cmd is a windows command script file.
-Please open the autorail.cmd file to initialise the project.
-All the command line commands of this project are handled by this file
-in proper way and order.
+This is a just for learning project on railway reservation system.
+It is built with django web framework of python, HTML, CSS and JS(DOM).
+Database used is SQLite.
